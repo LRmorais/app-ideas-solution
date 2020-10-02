@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Binary conversor to Decimal</title>
+    <style>
+        div#container{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 20px;
+            text-align: center;
+            border: 1px solid #000;
+            margin: 150px;
+        }
+        div button#btn{border: 1px solid #000;background-color: white;font-size: 20px;margin-top: 10px;}
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Bin2Dec</h1><br>
+        <h3>Conversor Binario Decimal</h3>
+        Binario: <input type="text" id="bin" maxlength="8"> <br>
+        <br>
+        <label>Resultado da Conversão</label><br><br>
+        Decimal: <input id="result" type="text" readonly><br><br>
+        <button id="btn">Converter</button>
+    </div>
+
+    <script>
+
+        function mudarTxt(){
+            var result = document.getElementById("result");
+            var entrada = document.getElementById("bin").value;
+            var binarios = Array.from(entrada)
+            var reverter = binarios.reverse()
+            var soma = 0;
+            for(var i = 0; i<reverter.length;i++){
+                if(reverter[i] == 1 || reverter[i] == 0){
+                    var res = reverter[i]*Math.pow(2,i)
+                    soma = soma + res;
+            }else{
+                alert("Digite apenas valores 0 e 1")
+                document.getElementById("bin").value="0";
+                break
+            }
+        }
+        result.value = soma;
+        }
+        function addEventos(){
+            var obj1 = document.getElementById("btn");
+            obj1.addEventListener("click",mudarTxt);
+        }
+        window.addEventListener("load", addEventos);
+    </script>
+</body>
+</html>
